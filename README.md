@@ -1,4 +1,3 @@
-# rpm
 Ставим необходимый софт
 ```sh
 yum install -y wget yum-utils gcc redhat-lsb-core  rpmdevtools rpm-build createrepo 
@@ -33,7 +32,7 @@ systemctl status nginx
 ```sh
 mkdir /usr/share/nginx/html/repo
 cp rpmbuild/RPMS/x86_64/nginx-1.18.0-2.el7.ngx.x86_64.rpm /usr/share/nginx/html/repo
-wget https://rpmfind.net/linux/epel/7/x86_64/Packages/c/cowsay-3.04-4.el7.noarch.rpm -O /usr/share/nginx/html/repo/
+wget wget https://rpmfind.net/linux/epel/7/x86_64/Packages/c/cowsay-3.04-4.el7.noarch.rpm -O /usr/share/nginx/html/repo/cowsay-3.04-4.el7.noarch.rpm
 createrepo /usr/share/nginx/html/repo
 ```
 Добавляем autoindex on, проверяем синтаксис и перезапускаем nginx 
@@ -74,3 +73,38 @@ cowsay meow!
                 ||----w |
                 ||     ||
 ```
+Ставим Docker 
+```shyum install docker 
+```
+Смотрим IP виртуалки 
+```sh
+ip addr 
+```
+Поднимаем
+```sh  
+docker run -it centos:7 bash
+```
+Забираем пакет из локальной машины
+```sh
+yum install wget -y 
+wget  10.0.2.15/repo/nginx-1.18.0-2.el7.ngx.x86_64.rpm 
+yum localinstall -y nginx-1.18.0-2.el7.ngx.x86_64.rpm
+```
+Проверяем
+```sh
+nginx 
+curl -a localhost
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+```
+Кладем docker образ в репу
+```sh
+docker login 
+docker tag 8652b9f0cb4c r2dxt/centos:otus
+docker push r2dxt/centos:otus
+```
+Лажит естественно тут: https://hub.docker.com/repository/docker/r2dxt/centos
