@@ -74,7 +74,8 @@ cowsay meow!
                 ||     ||
 ```
 Ставим Docker 
-```shyum install docker 
+```sh
+yum install docker 
 ```
 Смотрим IP виртуалки 
 ```sh
